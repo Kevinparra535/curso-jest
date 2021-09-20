@@ -1,61 +1,17 @@
-const cities = [
-  "New York",
-  "Paris",
-  "London",
-  "Istanbul",
-  "Berlin",
-  "Barcelona",
-  "Rome",
-  "Amsterdam",
-  "Madrid",
-  "Tokyo",
-  "Sydney",
-  "Melbourne",
-  "Cairo",
-  "Moscow",
-  "Mumbai",
-  "Shanghai",
-  "Beijing",
-  "Seoul",
-  "Osaka",
-  "Taipei",
-  "Hong Kong",
-  "Bangkok",
-  "Jakarta",
-  "Manila",
-  "Ho Chi Minh City",
-  "Bangalore",
-  "Delhi",
-  "Kolkata",
-  "Chennai",
-  "Buenos Aires",
-  "Sao Paulo",
-  "Lima",
-  "Bogota",
-  "Lagos",
-  "Kinshasa",
-  "Johannesburg",
-  "Khartoum",
-  "Dhaka",
-  "Cairo",
-  "Abu Dhabi",
-  "Riyadh",
-  "Tehran",
-  "Baghdad",
-];
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import App from './routes/App';
+import reducer from './reducers';
 
-const randomString = () => {
-  const string = cities[Math.floor(Math.random() * cities.length)];
-  return string;
-};
+import initialState from './initialState';
 
-const reverse2 = (str) => {
-  return new Promise((resolve, reject) => {
-    if (!str) {
-      reject(new Error("El parametro debe ser un string"));
-    }
-    resolve(str.split("").reverse().join(""));
-  });
-};
+const store = createStore(reducer, initialState);
 
-module.exports = randomString;
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app'),
+);

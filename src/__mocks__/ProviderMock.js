@@ -1,7 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { Router } from 'react-router-dom';
 import { createStore } from 'redux';
+import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
 import initialState from '../initialState';
@@ -10,9 +9,9 @@ import reducer from '../reducers';
 const store = createStore(reducer, initialState);
 const history = createBrowserHistory();
 
-const ProviderMock = ({ children }) => (
+const ProviderMock = props => (
   <Provider store={store}>
-    <Router history={history}>{children}</Router>
+    <Router history={history}>{props.children}</Router>
   </Provider>
 );
 
